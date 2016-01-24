@@ -44,6 +44,9 @@ class Semaphore(object):
     def available_count(self):
         return self.client.llen(self.available_key)
 
+    def reset(self):
+        self._init()
+
     def acquire(self, timeout=0, target=None):
         self._exists_or_init()
         if self.stale_client_timeout is not None:
